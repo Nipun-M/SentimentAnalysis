@@ -7,4 +7,5 @@ def load_data_set(filename):
         senti = row[0]
         content = ','.join(row[1:])
         data.append((senti, content))
+    data.pop(0)
     return data
