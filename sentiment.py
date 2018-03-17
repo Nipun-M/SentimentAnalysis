@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from nltk.stem import PorterStemmer
 stemmer=PorterStemmer()
-data = pd.read_csv('train_data.csv')
+data = pd.read_csv('data.csv')
 data=data.astype(str)
 data=data[['sentiment','content']]
 dataTrain,dataTest=train_test_split(data,test_size=0.1)
