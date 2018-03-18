@@ -1,10 +1,14 @@
 import csv
+import pandas as pd
 
-def load_data_set(filename):
-    csv_reader = csv.reader(open(filename))
-    data = list()
-    for row in csv_reader:
-        senti = row[0]
-        content = ','.join(row[1:])
-        data.append((senti, content))
-    return data
+def get_dataframe(filename):
+    raw_data = dict()
+    reader = csv.DictReader(open(filename))
+    headers = list(reader.__next__().keys())
+    for header in headers:
+        raw_data[header] = list()
+    for row in reader:
+        for header in headers:
+            raw_data[header].append(row[header])
+    df = pd.DataFrame(raw_data)
+    return df
