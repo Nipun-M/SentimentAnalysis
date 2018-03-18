@@ -2,9 +2,13 @@ from utility import *
 import string
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
 
 data = load_data_set('data.csv')
 stopwords = stopwords.words('english')
+stemmer = PorterStemmer()
+lematizer = WordNetLemmatizer()
 frequency_of_words = dict()
 frequency_per_sentiment = dict()
 sentiments = set([datum[0] for datum in data])
@@ -18,6 +22,8 @@ def get_significant_words(data):
     sentence = sentence.translate(str.maketrans('', '', string.punctuation))
     sentence = sentence.lower()
     words = word_tokenize(sentence)
+    words = [ lematizer.lemmatize(word) for word in words ]
+    words = [ stemmer.stem(word) for word in words ]
     words = list(filter(lambda word: word not in stopwords, words))
     update_words_list(sentiment, words)
     return words
