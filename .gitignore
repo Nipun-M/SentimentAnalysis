@@ -1,7 +1,0 @@
-__pycache__/
-.cache/
-*.pyc
-.DS_Store
-.ipynb_checkpoints/
-.idea/
-objects/
