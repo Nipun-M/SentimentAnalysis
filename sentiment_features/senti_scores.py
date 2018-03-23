@@ -95,7 +95,7 @@ def raw_sentiment_score(dataframe):
 
 
 def get_mean(data):
-    return statistics.mean(data)
+    return statistics.mean(data) if len(data) > 0 else 0
 
 
 def __get_mean_score(dataframe, column):
@@ -109,6 +109,8 @@ def __get_mean_score(dataframe, column):
 def get_rel_strength(data):
     count = 0.0
     length = len(data)
+    if length == 0:
+        return 0
     for items in data:
         if items != 0:
             count += 1
@@ -125,7 +127,7 @@ def __get_rel_strength(dataframe, column):
 
 
 def get_max(data):
-    return max(data)
+    return max(data) if len(data) > 0 else 0
 
 
 def __get_max_score(dataframe, column):
@@ -137,9 +139,7 @@ def __get_max_score(dataframe, column):
 
 
 def get_stddev(data):
-    if len(data) < 2:
-        return 0
-    return statistics.stdev(data)
+    return statistics.stdev(data) if len(data) > 2 else 0
 
 
 def __get_stddev_score(dataframe, column):
@@ -151,7 +151,7 @@ def __get_stddev_score(dataframe, column):
 
 
 def get_median(data):
-    return statistics.median(data)
+    return statistics.median(data) if len(data) > 0 else 0
 
 
 def __get_median_score(dataframe, column):
